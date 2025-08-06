@@ -316,7 +316,7 @@
         }
 
         /* Chat Container */
-        .chatContainer {
+        .chatwidget {
             position: fixed;
             height: 500px;
             width: 360px;
@@ -332,7 +332,7 @@
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .chatContainer.active {
+        .chatwidget.active {
             transform: translateY(0);
         }
 
@@ -528,7 +528,7 @@
                 width: 100%;
             }
 
-            .chatContainer {
+            .chatwidget {
                 width: calc(100% - 2rem);
                 right: 1rem;
                 left: 1rem;
@@ -689,28 +689,12 @@
         </div>
 
         <!-- Chat Container -->
-        <div class="chatContainer" id="chatContainer">
-            <div class="chat-header">
-                <div class="chat-title">
-                    <i class="fa fa-comments"></i> Banking Assistant
-                </div>
-                <button class="chat-close" onclick="toggleChat()">
-                    <i class="fa fa-times"></i>
-                </button>
-            </div>
-            <div class="chat-body" id="chatBody">
-                <div class="chat-message">
-                    <strong>Banking Assistant:</strong> Hello! How can I help you with your banking needs today?
-                </div>
-            </div>
-            <div class="chat-input-container">
-                <input type="text" class="chat-input" id="chatInput" placeholder="Type your message...">
-                <button class="chat-send" onclick="sendMessage()">
-                    <i class="fa fa-paper-plane"></i>
-                </button>
-            </div>
-        </div>
+<!--         <div class="chatContainer" id="chatContainer">
+            
+        </div> -->
 
+        <div id="chatwidget"></div>
+        <script src="BotNext.js"></script>
         <!-- Chat Toggle Button -->
         <button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
             <i class="fa fa-comments"></i>
@@ -828,5 +812,9 @@
             parallax.style.transform = `translateY(${speed}px)`;
         });
     </script>
+
+
+
+    
 </body>
 </html>
