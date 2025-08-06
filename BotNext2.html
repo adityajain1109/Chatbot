@@ -1,608 +1,487 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>XYZ Bank</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
-    <link type="text/css" rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XYZ Bank - Modern Banking Experience</title>
+    <meta name="description" content="Experience modern banking with premium rates and unmatched security">
+    <meta name="theme-color" content="#2196F3">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlhZWiBCYW5rIiwKICAic2hvcnRfbmFtZSI6ICJYWVpCYW5rIiwKICAic3RhcnRfdXJsIjogIi8iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMyMTk2RjMiLAogICJ0aGVtZV9jb2xvciI6ICIjMjE5NkYzIgp9">
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        html, body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            height: 100%;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
             overflow-x: hidden;
         }
 
-        .mainWrapper {
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            position: relative;
+            padding: 0 20px;
         }
 
-        /* Enhanced Header */
-        .mainHeader {
-            height: 80px;
-            padding: 0 2.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            width: 100%;
+        /* Header Styles */
+        header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .mainLogo {
-            font-size: 28px;
-            font-weight: 800;
-            color: #0090da;
-            cursor: pointer;
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .nav-menu {
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2196F3;
+            text-decoration: none;
+        }
+
+        .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
-            align-items: center;
         }
 
-        .nav-item a {
+        .nav-links a {
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: color 0.3s ease;
         }
 
-        .nav-item a:hover {
-            background: linear-gradient(135deg, #0090da, #4facfe);
-            color: white;
-            transform: translateY(-2px);
+        .nav-links a:hover {
+            color: #2196F3;
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #7cb342, #8bc34a);
-            color: white !important;
-            padding: 12px 24px !important;
-            border-radius: 30px;
+            background: linear-gradient(135deg, #8BC34A, #4CAF50);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
             font-weight: 600;
-            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(124, 179, 66, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 195, 74, 0.3);
         }
 
-        .mobile-toggle {
+        .mobile-menu-toggle {
             display: none;
             background: none;
             border: none;
-            font-size: 24px;
-            color: #0090da;
+            font-size: 1.5rem;
             cursor: pointer;
+            color: #333;
         }
 
-        /* Enhanced Main Body */
-        .mainBody {
-            background: linear-gradient(135deg, rgba(0, 144, 218, 0.9), rgba(75, 172, 254, 0.8)), 
-                        url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            height: 100vh;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2196F3, #64B5F6);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            padding-top: 80px;
         }
 
-        .mainBody::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1), transparent 50%);
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><path d="M200,800 Q400,600 600,800 T1000,800 L1000,1000 L0,1000 Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat center bottom;
+            background-size: cover;
         }
 
-        /* Enhanced Content */
-        .mainContent {
-            display: flex;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-            gap: 4rem;
-            align-items: flex-start;
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
             position: relative;
             z-index: 2;
         }
 
-        .content-left {
-            flex: 1;
-            max-width: 55%;
-            padding-right: 2rem;
-        }
-
-        .hero-title {
-            font-size: clamp(2.8rem, 5vw, 4.5rem);
-            font-weight: 800;
+        .hero-text {
             color: white;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
 
         .rate-highlight {
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 20px;
             padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 2.5rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+            text-align: center;
         }
 
-        .rate-text {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: #7cb342;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        .apy-rate {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #8BC34A;
+            margin-bottom: 0.5rem;
         }
 
         .rate-description {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
         }
 
         .learn-more-btn {
-            background: linear-gradient(135deg, #7cb342, #8bc34a);
+            background: linear-gradient(135deg, #8BC34A, #4CAF50);
             color: white;
-            padding: 16px 40px;
+            padding: 0.75rem 2rem;
             border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
+            border-radius: 25px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.4);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .learn-more-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(124, 179, 66, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 195, 74, 0.3);
         }
 
-        /* Enhanced Banking Cards */
+        /* Banking Forms */
         .banking-section {
-            flex: 1;
-            max-width: 45%;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            padding-left: 1rem;
-        }
-
-        .banking-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
+            border-radius: 20px;
+            padding: 2rem;
         }
 
-        .banking-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .banking-card h3 {
+        .banking-section h2 {
             color: white;
             font-size: 1.5rem;
-            font-weight: 700;
             margin-bottom: 1.5rem;
             text-align: center;
         }
 
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        .form-group {
+            margin-bottom: 1rem;
         }
 
-        .form-input {
-            background: rgba(255, 255, 255, 0.9);
+        .form-control {
+            width: 100%;
+            padding: 1rem;
             border: none;
-            border-radius: 15px;
-            padding: 15px 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
             font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .form-input:focus {
+        .form-control:focus {
             outline: none;
-            background: white;
-            box-shadow: 0 0 20px rgba(0, 144, 218, 0.3);
+            box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.3);
             transform: translateY(-2px);
         }
 
-        .login-btn {
-            background: linear-gradient(135deg, #0090da, #4facfe);
+        .secure-login-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1976D2, #2196F3);
             color: white;
+            padding: 1rem;
             border: none;
-            border-radius: 15px;
-            padding: 15px;
-            font-size: 1.1rem;
+            border-radius: 10px;
             font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 0.5rem;
         }
 
-        .login-btn:hover {
+        .secure-login-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 144, 218, 0.4);
+            box-shadow: 0 8px 20px rgba(25, 118, 210, 0.3);
         }
 
         .form-links {
             display: flex;
             justify-content: space-between;
             margin-top: 1rem;
+            font-size: 0.9rem;
         }
 
         .form-links a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
         }
 
         .form-links a:hover {
             color: white;
         }
 
+        /* ATM Finder */
         .atm-finder {
-            display: flex;
-            gap: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
         }
 
-        .atm-input {
-            flex: 1;
-        }
-
-        .find-btn {
-            background: #7cb342;
+        .atm-finder h2 {
             color: white;
-            border: none;
-            border-radius: 15px;
-            padding: 15px 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .find-btn:hover {
-            background: #689f38;
-            transform: translateY(-2px);
-        }
-
-        /* Services Section */
-        .services-section {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(15px);
-            padding: 2.5rem 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .services-grid {
-            display: flex;
-            justify-content: center;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-
-        .service-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: white;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            opacity: 0.85;
-        }
-
-        .service-icon:hover {
-            transform: translateY(-8px);
-            opacity: 1;
-        }
-
-        .service-icon i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .service-icon:hover i {
-            transform: scale(1.1);
-        }
-
-        .service-icon span {
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
 
-        /* Embedded Chat Widget Styles */
-        #chatwidget {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 350px;
-            height: 500px;
-            z-index: 1001;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .chat-widget-container {
-            width: 100%;
-            height: 100%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            transform: translateY(100%);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-
-        .chat-widget-container.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .chat-widget-header {
-            background: linear-gradient(135deg, #0090da, #4facfe);
-            color: white;
-            padding: 15px;
+        .search-group {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            gap: 0.5rem;
         }
 
-        .chat-widget-title {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .chat-widget-close {
-            background: none;
-            border: none;
+        .search-btn {
+            background: linear-gradient(135deg, #8BC34A, #4CAF50);
             color: white;
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 5px;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-
-        .chat-widget-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .chat-widget-body {
-            height: calc(100% - 120px);
-            overflow-y: auto;
-            padding: 15px;
-            background: #f8f9fa;
-        }
-
-        .chat-widget-message {
-            background: white;
-            padding: 10px;
+            border: none;
             border-radius: 10px;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            font-size: 0.9rem;
-        }
-
-        .chat-widget-message.bot {
-            background: #e3f2fd;
-            border-left: 3px solid #0090da;
-        }
-
-        .chat-widget-input-area {
-            padding: 15px;
-            border-top: 1px solid #eee;
-            display: flex;
-            gap: 10px;
-            background: white;
-        }
-
-        .chat-widget-input {
-            flex: 1;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            padding: 8px 15px;
-            outline: none;
-            font-size: 0.9rem;
-        }
-
-        .chat-widget-input:focus {
-            border-color: #0090da;
-        }
-
-        .chat-widget-send {
-            background: #0090da;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
+            padding: 1rem 1.5rem;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 195, 74, 0.3);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-item {
+            text-align: center;
+            color: white;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
 
-        .chat-widget-send:hover {
-            background: #007bb5;
+        .service-item:hover .service-icon {
+            transform: translateY(-5px);
+            background: rgba(139, 195, 74, 0.3);
         }
 
-        .chat-widget-toggle {
+        /* Chatbot Styles */
+        .chatbot-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
+            z-index: 1001;
+        }
+
+        .chatbot-toggle {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #0090da, #4facfe);
+            background: linear-gradient(135deg, #2196F3, #64B5F6);
             border: none;
             border-radius: 50%;
             color: white;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0, 144, 218, 0.4);
+            box-shadow: 0 4px 20px rgba(33, 150, 243, 0.3);
             transition: all 0.3s ease;
-            z-index: 999;
         }
 
-        .chat-widget-toggle:hover {
+        .chatbot-toggle:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(0, 144, 218, 0.5);
+            box-shadow: 0 6px 25px rgba(33, 150, 243, 0.4);
         }
 
-        .chat-widget-toggle.hidden {
-            transform: scale(0);
-            opacity: 0;
+        .chatbot-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-window.active {
+            display: flex;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #2196F3, #64B5F6);
+            color: white;
+            padding: 1rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            max-width: 80%;
+        }
+
+        .message.bot {
+            background: #e3f2fd;
+            padding: 0.75rem;
+            border-radius: 15px 15px 15px 5px;
+        }
+
+        .message.user {
+            background: #2196F3;
+            color: white;
+            padding: 0.75rem;
+            border-radius: 15px 15px 5px 15px;
+            margin-left: auto;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            margin-right: 0.5rem;
+        }
+
+        .chatbot-input button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .mainHeader {
-                padding: 0 1rem;
-            }
-
-            .nav-menu {
+            .nav-links, .cta-button {
                 display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 2rem 1rem;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             }
 
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .mobile-toggle {
+            .mobile-menu-toggle {
                 display: block;
             }
 
-            .mainContent {
-                flex-direction: column;
-                padding: 1rem;
+            .hero-content {
+                grid-template-columns: 1fr;
                 text-align: center;
             }
 
-            .content-left {
-                max-width: 100%;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .banking-section {
-                max-width: 100%;
-                width: 100%;
-            }
-
-            #chatwidget {
-                width: calc(100% - 20px);
-                right: 10px;
-                left: 10px;
-                bottom: 90px;
+            .hero h1 {
+                font-size: 2rem;
             }
 
             .services-grid {
-                flex-wrap: wrap;
-                gap: 2rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
 
-            .services-section {
-                position: relative;
-                margin-top: 3rem;
+            .chatbot-window {
+                width: calc(100vw - 40px);
+                height: calc(100vh - 140px);
+                right: -10px;
             }
 
-            .chat-widget-toggle {
-                width: 50px;
-                height: 50px;
-                bottom: 15px;
-                right: 15px;
-                font-size: 1.1rem;
+            .container {
+                padding: 0 15px;
             }
         }
 
         @media (max-width: 480px) {
-            .mainHeader {
-                height: 70px;
+            .hero {
+                min-height: calc(100vh - 80px);
+                margin-top: 80px;
             }
 
-            .hero-title {
-                font-size: 2rem;
+            .hero-content {
+                gap: 1.5rem;
             }
 
-            .rate-text {
-                font-size: 2.5rem;
-            }
-
-            .banking-card {
+            .rate-highlight {
                 padding: 1.5rem;
             }
 
-            #chatwidget {
-                height: 450px;
-                bottom: 80px;
+            .apy-rate {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -618,270 +497,218 @@
             }
         }
 
-        .fade-in-up {
-            animation: fadeInUp 0.8s ease forwards;
+        .hero-text, .banking-section, .atm-finder {
+            animation: fadeInUp 0.6s ease-out;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        .banking-section {
+            animation-delay: 0.2s;
         }
 
-        .floating {
-            animation: float 3s ease-in-out infinite;
+        .atm-finder {
+            animation-delay: 0.4s;
         }
     </style>
 </head>
 <body>
-    <div class="mainWrapper">
-        <!-- Enhanced Header -->
-        <header class="mainHeader">
-            <div class="mainLogo">XYZ Bank</div>
-            <nav>
-                <ul class="nav-menu" id="navMenu">
-                    <li class="nav-item"><a href="#bank">Bank</a></li>
-                    <li class="nav-item"><a href="#borrow">Borrow</a></li>
-                    <li class="nav-item"><a href="#invest">Invest</a></li>
-                    <li class="nav-item"><a href="#protect">Protect</a></li>
-                    <li class="nav-item"><a href="#about">About</a></li>
-                    <li class="nav-item"><a href="#member" class="cta-button">Become a Member</a></li>
-                </ul>
-                <button class="mobile-toggle" id="mobileToggle">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </nav>
-        </header>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">XYZ Bank</a>
+            <ul class="nav-links">
+                <li><a href="#bank">Bank</a></li>
+                <li><a href="#borrow">Borrow</a></li>
+                <li><a href="#invest">Invest</a></li>
+                <li><a href="#protect">Protect</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <a href="#" class="cta-button">Become a Member</a>
+            <button class="mobile-menu-toggle">☰</button>
+        </nav>
+    </header>
 
-        <!-- Enhanced Main Body -->
-        <div class="mainBody">
-            <div class="mainContent">
-                <div class="content-left fade-in-up">
-                    <h1 class="hero-title">Sit back, relax and earn a higher rate</h1>
-                    <p class="hero-subtitle">Experience modern banking with premium rates and unmatched security</p>
-                    
-                    <div class="rate-highlight floating">
-                        <div class="rate-text">5.35% APY</div>
-                        <div class="rate-description">Lock in with an 18-month jumbo certificate</div>
-                    </div>
-                    
-                    <button class="learn-more-btn" onclick="BotNext.openChat()">
-                        <i class="fa fa-arrow-right"></i> Learn More
-                    </button>
-                </div>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Sit back, relax and earn a higher rate</h1>
+                        <p>Experience modern banking with premium rates and unmatched security</p>
+                        
+                        <div class="rate-highlight">
+                            <div class="apy-rate">5.35% APY</div>
+                            <div class="rate-description">Lock in with an 18-month jumbo certificate</div>
+                            <a href="#" class="learn-more-btn">
+                                → Learn More
+                            </a>
+                        </div>
 
-                <div class="banking-section fade-in-up">
-                    <!-- Online Banking Card -->
-                    <div class="banking-card">
-                        <h3>Online Banking</h3>
-                        <form class="login-form" onsubmit="handleLogin(event)">
-                            <input type="text" class="form-input" placeholder="Username" required>
-                            <input type="password" class="form-input" placeholder="Password" required>
-                            <button type="submit" class="login-btn">Secure Log In</button>
-                        </form>
-                        <div class="form-links">
-                            <a href="#setup">Set up in 1 Minute</a>
-                            <a href="#security">Security Center</a>
+                        <div class="services-grid">
+                            <div class="service-item">
+                                <div class="service-icon">📱</div>
+                                <h3>Mobile Banking</h3>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-icon">💳</div>
+                                <h3>Credit Cards</h3>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-icon">📄</div>
+                                <h3>Statements</h3>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-icon">🧮</div>
+                                <h3>Calculators</h3>
+                            </div>
+                            <div class="service-item">
+                                <div class="service-icon">🚗</div>
+                                <h3>Auto Loans</h3>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- ATM Finder Card -->
-                    <div class="banking-card">
-                        <h3>Find ATMs</h3>
+                    <div class="hero-forms">
+                        <div class="banking-section">
+                            <h2>Online Banking</h2>
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Username" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password" required>
+                                </div>
+                                <button type="submit" class="secure-login-btn">Secure Log In</button>
+                                <div class="form-links">
+                                    <a href="#">Set up in 1 Minute</a>
+                                    <a href="#">Security Center</a>
+                                </div>
+                            </form>
+                        </div>
+
                         <div class="atm-finder">
-                            <input type="text" class="form-input atm-input" placeholder="City, State or Zip">
-                            <button class="find-btn" onclick="findATMs()">
-                                <i class="fa fa-search"></i>
-                            </button>
+                            <h2>Find ATMs</h2>
+                            <div class="search-group">
+                                <input type="text" class="form-control" placeholder="City, State or Zip">
+                                <button class="search-btn">🔍</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <!-- Services Section -->
-            <div class="services-section">
-                <div class="services-grid">
-                    <div class="service-icon" onclick="showService('mobile')">
-                        <i class="fa fa-mobile"></i>
-                        <span>Mobile Banking</span>
-                    </div>
-                    <div class="service-icon" onclick="showService('card')">
-                        <i class="fa fa-credit-card"></i>
-                        <span>Credit Cards</span>
-                    </div>
-                    <div class="service-icon" onclick="showService('statement')">
-                        <i class="fa fa-file-text-o"></i>
-                        <span>Statements</span>
-                    </div>
-                    <div class="service-icon" onclick="showService('calculator')">
-                        <i class="fa fa-calculator"></i>
-                        <span>Calculators</span>
-                    </div>
-                    <div class="service-icon" onclick="showService('car')">
-                        <i class="fa fa-car"></i>
-                        <span>Auto Loans</span>
-                    </div>
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" onclick="toggleChatbot()">💬</button>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                XYZ Bank Assistant
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot">
+                    Hello! I'm your XYZ Bank assistant. How can I help you today?
                 </div>
             </div>
-        </div>
-
-        <!-- Embedded Chat Widget -->
-        <div id="chatwidget">
-            <div class="chat-widget-container" id="chatContainer">
-                <div class="chat-widget-header">
-                    <div class="chat-widget-title">XYZ Bank Assistant</div>
-                    <button class="chat-widget-close" onclick="BotNext.closeChat()">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </div>
-                <div class="chat-widget-body" id="chatMessages">
-                    <div class="chat-widget-message bot">
-                        <strong>Banking Assistant:</strong> Hello! Welcome to XYZ Bank. I'm here to help you with your banking needs. How can I assist you today?
-                    </div>
-                </div>
-                <div class="chat-widget-input-area">
-                    <input type="text" class="chat-widget-input" id="chatInput" placeholder="Type your message..." onkeypress="BotNext.handleKeyPress(event)">
-                    <button class="chat-widget-send" onclick="BotNext.sendMessage()">
-                        <i class="fa fa-paper-plane"></i>
-                    </button>
-                </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+                <button onclick="sendMessage()">▶</button>
             </div>
-            <button class="chat-widget-toggle" id="chatToggle" onclick="BotNext.toggleChat()">
-                <i class="fa fa-comments"></i>
-            </button>
         </div>
     </div>
 
     <script>
-        // Embedded BotNext.js functionality
-        const BotNext = {
-            isOpen: false,
-            
-            init: function() {
-                console.log('BotNext Chat Widget initialized');
-                this.setupEventListeners();
-            },
-            
-            setupEventListeners: function() {
-                // Mobile menu toggle
-                const mobileToggle = document.getElementById('mobileToggle');
-                if (mobileToggle) {
-                    mobileToggle.addEventListener('click', function() {
-                        const navMenu = document.getElementById('navMenu');
-                        navMenu.classList.toggle('active');
-                    });
-                }
+        let chatbotOpen = false;
 
-                // Header scroll effect
-                window.addEventListener('scroll', function() {
-                    const header = document.querySelector('.mainHeader');
-                    if (window.scrollY > 100) {
-                        header.style.background = 'rgba(255, 255, 255, 0.98)';
-                        header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
-                    } else {
-                        header.style.background = 'rgba(255, 255, 255, 0.95)';
-                        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-                    }
-                });
-
-                // Smooth animations on load
-                window.addEventListener('load', function() {
-                    const elements = document.querySelectorAll('.fade-in-up');
-                    elements.forEach((el, index) => {
-                        setTimeout(() => {
-                            el.style.opacity = '1';
-                        }, index * 200);
-                    });
-                });
-            },
+        function toggleChatbot() {
+            const window = document.getElementById('chatbotWindow');
+            chatbotOpen = !chatbotOpen;
             
-            toggleChat: function() {
-                const chatContainer = document.getElementById('chatContainer');
-                const chatToggle = document.getElementById('chatToggle');
-                
-                if (!this.isOpen) {
-                    this.openChat();
-                } else {
-                    this.closeChat();
-                }
-            },
-            
-            openChat: function() {
-                const chatContainer = document.getElementById('chatContainer');
-                const chatToggle = document.getElementById('chatToggle');
-                
-                chatContainer.classList.add('active');
-                chatToggle.classList.add('hidden');
-                this.isOpen = true;
-                
-                // Focus on input
-                setTimeout(() => {
-                    document.getElementById('chatInput').focus();
-                }, 400);
-            },
-            
-            closeChat: function() {
-                const chatContainer = document.getElementById('chatContainer');
-                const chatToggle = document.getElementById('chatToggle');
-                
-                chatContainer.classList.remove('active');
-                chatToggle.classList.remove('hidden');
-                this.isOpen = false;
-            },
-            
-            sendMessage: function() {
-                const chatInput = document.getElementById('chatInput');
-                const chatMessages = document.getElementById('chatMessages');
-                const message = chatInput.value.trim();
-                
-                if (message) {
-                    // Add user message
-                    const userMessage = document.createElement('div');
-                    userMessage.className = 'chat-widget-message';
-                    userMessage.innerHTML = `<strong>You:</strong> ${message}`;
-                    chatMessages.appendChild(userMessage);
-                    
-                    // Auto-responses based on keywords
-                    const responses = this.generateResponse(message);
-                    
-                    // Simulate bot response
-                    setTimeout(() => {
-                        const botMessage = document.createElement('div');
-                        botMessage.className = 'chat-widget-message bot';
-                        botMessage.innerHTML = `<strong>Banking Assistant:</strong> ${responses}`;
-                        chatMessages.appendChild(botMessage);
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }, 1000);
-                    
-                    chatInput.value = '';
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }
-            },
-            
-            generateResponse: function(message) {
-                const msg = message.toLowerCase();
-                
-                if (msg.includes('account') || msg.includes('balance')) {
-                    return "I can help you with account-related queries. For security reasons, please log into your online banking or visit our nearest branch for account balance information.";
-                } else if (msg.includes('loan') || msg.includes('mortgage')) {
-                    return "We offer various loan options including personal loans, auto loans, and mortgages. Our current rates are very competitive. Would you like me to connect you with a loan specialist?";
-                } else if (msg.includes('card') || msg.includes('credit')) {
-                    return "We have several credit card options with great rewards and low interest rates. You can apply online or speak with one of our representatives for personalized recommendations.";
-                } else if (msg.includes('atm') || msg.includes('branch')) {
-                    return "You can use our ATM finder tool on this page or visit our website to locate the nearest branch or ATM. We have locations throughout the area for your convenience.";
-                } else if (msg.includes('rate') || msg.includes('interest')) {
-                    return "Our current promotional rate is 5.35% APY for 18-month jumbo certificates. We also offer competitive rates on savings accounts and other investment products.";
-                } else if (msg.includes('hello') || msg.includes('hi') || msg.includes('help')) {
-                    return "Hello! I'm here to assist you with all your banking needs. Whether you need help with accounts, loans, credit cards, or general banking services, I'm ready to help!";
-                } else {
-                    return "Thank you for your inquiry. I'm here to help with any banking questions you may have. If you need immediate assistance, please call our customer service line or visit your local branch.";
-                }
-            },
-            
-            handleKeyPress: function(event) {
-                if (event.key === 'Enter') {
-                    this.sendMessage();
-                }
+            if (chatbotOpen) {
+                window.classList.add('active');
+                document.getElementById('chatbotInput').focus();
+            } else {
+                window.classList.remove('active');
             }
-        };
+        }
 
-        // Additional utility
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatbotInput');
+            const messages = document.getElementById('chatbotMessages');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.textContent = message;
+            messages.appendChild(userMessage);
+
+            // Clear input
+            input.value = '';
+
+            // Simulate bot response
+            setTimeout(() => {
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot';
+                botMessage.textContent = getBotResponse(message);
+                messages.appendChild(botMessage);
+                messages.scrollTop = messages.scrollHeight;
+            }, 1000);
+
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('rate') || lowerMessage.includes('apy')) {
+                return "Our current 18-month jumbo certificate offers 5.35% APY. Would you like to learn more about our certificate options?";
+            } else if (lowerMessage.includes('account') || lowerMessage.includes('open')) {
+                return "I can help you open an account! You can get started in just 1 minute. What type of account are you interested in?";
+            } else if (lowerMessage.includes('atm') || lowerMessage.includes('location')) {
+                return "You can find nearby ATMs using our ATM locator above. Just enter your city, state, or ZIP code!";
+            } else if (lowerMessage.includes('loan') || lowerMessage.includes('borrow')) {
+                return "We offer various loan options including auto loans, personal loans, and mortgages. What type of loan are you considering?";
+            } else if (lowerMessage.includes('mobile') || lowerMessage.includes('app')) {
+                return "Our mobile banking app lets you manage your accounts anywhere, anytime. You can download it from your device's app store!";
+            } else if (lowerMessage.includes('security') || lowerMessage.includes('safe')) {
+                return "Security is our top priority. We use industry-leading encryption and multi-factor authentication to protect your accounts.";
+            } else {
+                return "Thanks for your question! For detailed information about our services, I'd recommend speaking with one of our banking specialists. Is there anything specific about our accounts or services you'd like to know?";
+            }
+        }
+
+        // Mobile menu functionality (basic)
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+            // This would typically show a mobile menu
+            alert('Mobile menu would open here');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login functionality would be implemented here');
+        });
+    </script>
+</body>
+</html>
