@@ -105,6 +105,8 @@
             align-items: center;
             position: relative;
             overflow: hidden;
+            margin-top: 80px; /* Account for fixed header */
+            padding-top: 2rem;
         }
 
         .hero::before {
@@ -465,7 +467,8 @@
         @media (max-width: 480px) {
             .hero {
                 min-height: calc(100vh - 80px);
-                margin-top: 80px;
+                margin-top: 70px;
+                padding-top: 1rem;
             }
 
             .hero-content {
