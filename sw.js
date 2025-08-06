@@ -1,17 +1,16 @@
-const GHPATH = '/Chatbot/';
-const APP_PREFIX = 'botnext_';
-const VERSION = 'version_01';
-const URLS = [
-  `${GHPATH}`,
-  `${GHPATH}index.html`,
-  `${GHPATH}BotNext2.html`,
-  `${GHPATH}css/styles.css`, // Add actual stylesheet if you have one
-  `${GHPATH}js/app.js`       // Add actual JS file if applicable
+const CACHE_NAME = 'botnext-cache-v1';
+const FILES_TO_CACHE = [
+  '/Chatbot/BotNext2.html',
+  '/Chatbot/manifest.webmanifest',
+  '/Chatbot/icons/icon-192.png',
+  '/Chatbot/icons/icon-512.png'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(APP_PREFIX + VERSION).then(cache => cache.addAll(URLS))
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(FILES_TO_CACHE);
+    })
   );
   self.skipWaiting();
 });
@@ -20,9 +19,7 @@ self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(
-        keys
-          .filter(key => key.startsWith(APP_PREFIX) && key !== APP_PREFIX + VERSION)
-          .map(key => caches.delete(key))
+        keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
       )
     )
   );
@@ -31,6 +28,8 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });
