@@ -315,153 +315,6 @@
             transform: translateY(-2px);
         }
 
-        /* Chat Widget Styles */
-        .chatContainer {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            width: 350px;
-            height: 500px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            z-index: 1001;
-            transform: translateY(100%);
-            opacity: 0;
-            transition: all 0.4s ease;
-            overflow: hidden;
-        }
-
-        .chatContainer.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .chat-header {
-            background: linear-gradient(135deg, #0090da, #4facfe);
-            color: white;
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-
-        .chat-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .chat-close:hover {
-            opacity: 1;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .chat-body {
-            padding: 1rem;
-            height: calc(100% - 130px);
-            overflow-y: auto;
-            background: #f8f9fa;
-        }
-
-        .chat-message {
-            background: white;
-            padding: 0.8rem;
-            border-radius: 10px;
-            margin-bottom: 0.8rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            font-size: 0.9rem;
-        }
-
-        .chat-message.bot {
-            background: #e3f2fd;
-            border-left: 3px solid #0090da;
-        }
-
-        .chat-input-container {
-            padding: 1rem;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            gap: 0.8rem;
-            background: white;
-        }
-
-        .chat-input {
-            flex: 1;
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            padding: 8px 12px;
-            font-size: 0.9rem;
-            outline: none;
-        }
-
-        .chat-input:focus {
-            border-color: #0090da;
-            box-shadow: 0 0 5px rgba(0, 144, 218, 0.3);
-        }
-
-        .chat-send {
-            background: #0090da;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .chat-send:hover {
-            background: #007bb5;
-            transform: scale(1.05);
-        }
-
-        /* Chat Toggle Button */
-        .chat-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #0090da, #4facfe);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.3rem;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0, 144, 218, 0.4);
-            transition: all 0.3s ease;
-            z-index: 999;
-        }
-
-        .chat-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(0, 144, 218, 0.5);
-        }
-
-        .chat-toggle.hidden {
-            transform: scale(0);
-            opacity: 0;
-        }
-
         /* Services Section */
         .services-section {
             position: absolute;
@@ -514,6 +367,150 @@
             text-align: center;
         }
 
+        /* Embedded Chat Widget Styles */
+        #chatwidget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            z-index: 1001;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .chat-widget-container {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .chat-widget-container.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .chat-widget-header {
+            background: linear-gradient(135deg, #0090da, #4facfe);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-widget-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .chat-widget-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .chat-widget-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-widget-body {
+            height: calc(100% - 120px);
+            overflow-y: auto;
+            padding: 15px;
+            background: #f8f9fa;
+        }
+
+        .chat-widget-message {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .chat-widget-message.bot {
+            background: #e3f2fd;
+            border-left: 3px solid #0090da;
+        }
+
+        .chat-widget-input-area {
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+            background: white;
+        }
+
+        .chat-widget-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 8px 15px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .chat-widget-input:focus {
+            border-color: #0090da;
+        }
+
+        .chat-widget-send {
+            background: #0090da;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .chat-widget-send:hover {
+            background: #007bb5;
+        }
+
+        .chat-widget-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0090da, #4facfe);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 144, 218, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .chat-widget-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 144, 218, 0.5);
+        }
+
+        .chat-widget-toggle.hidden {
+            transform: scale(0);
+            opacity: 0;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .mainHeader {
@@ -560,7 +557,7 @@
                 width: 100%;
             }
 
-            .chatContainer {
+            #chatwidget {
                 width: calc(100% - 20px);
                 right: 10px;
                 left: 10px;
@@ -577,7 +574,7 @@
                 margin-top: 3rem;
             }
 
-            .chat-toggle {
+            .chat-widget-toggle {
                 width: 50px;
                 height: 50px;
                 bottom: 15px;
@@ -603,7 +600,7 @@
                 padding: 1.5rem;
             }
 
-            .chatContainer {
+            #chatwidget {
                 height: 450px;
                 bottom: 80px;
             }
@@ -667,7 +664,7 @@
                         <div class="rate-description">Lock in with an 18-month jumbo certificate</div>
                     </div>
                     
-                    <button class="learn-more-btn" onclick="toggleChat()">
+                    <button class="learn-more-btn" onclick="BotNext.openChat()">
                         <i class="fa fa-arrow-right"></i> Learn More
                     </button>
                 </div>
@@ -727,130 +724,164 @@
             </div>
         </div>
 
-        <!-- Chat Container -->
-        <div class="chatContainer" id="chatContainer">
-            <div class="chat-header">
-                <div class="chat-title">Banking Assistant</div>
-                <button class="chat-close" onclick="toggleChat()">
-                    <i class="fa fa-times"></i>
-                </button>
-            </div>
-            <div class="chat-body" id="chatBody">
-                <div class="chat-message bot">
-                    <strong>Banking Assistant:</strong> Hello! I'm here to help you with your banking needs. How can I assist you today?
+        <!-- Embedded Chat Widget -->
+        <div id="chatwidget">
+            <div class="chat-widget-container" id="chatContainer">
+                <div class="chat-widget-header">
+                    <div class="chat-widget-title">XYZ Bank Assistant</div>
+                    <button class="chat-widget-close" onclick="BotNext.closeChat()">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <div class="chat-widget-body" id="chatMessages">
+                    <div class="chat-widget-message bot">
+                        <strong>Banking Assistant:</strong> Hello! Welcome to XYZ Bank. I'm here to help you with your banking needs. How can I assist you today?
+                    </div>
+                </div>
+                <div class="chat-widget-input-area">
+                    <input type="text" class="chat-widget-input" id="chatInput" placeholder="Type your message..." onkeypress="BotNext.handleKeyPress(event)">
+                    <button class="chat-widget-send" onclick="BotNext.sendMessage()">
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
-            <div class="chat-input-container">
-                <input type="text" class="chat-input" id="chatInput" placeholder="Type your message...">
-                <button class="chat-send" onclick="sendMessage()">
-                    <i class="fa fa-paper-plane"></i>
-                </button>
-            </div>
+            <button class="chat-widget-toggle" id="chatToggle" onclick="BotNext.toggleChat()">
+                <i class="fa fa-comments"></i>
+            </button>
         </div>
-        <div id="chatwidget"></div>
-        <script src="BotNext.js"></script>
-        
-         <button class="chat-toggle" id="chatToggle">
-            <script src="BotNext.js"></script>
-        </button>
     </div>
 
-<!--     <script>
-        // Mobile menu toggle
-        document.getElementById('mobileToggle').addEventListener('click', function() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.mainHeader');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-            }
-        });
-
-        // Chat functionality
-        function toggleChat() {
-            const chatContainer = document.getElementById('chatContainer');
-            const chatToggle = document.getElementById('chatToggle');
+    <script>
+        // Embedded BotNext.js functionality
+        const BotNext = {
+            isOpen: false,
             
-            chatContainer.classList.toggle('active');
+            init: function() {
+                console.log('BotNext Chat Widget initialized');
+                this.setupEventListeners();
+            },
             
-            if (chatContainer.classList.contains('active')) {
+            setupEventListeners: function() {
+                // Mobile menu toggle
+                const mobileToggle = document.getElementById('mobileToggle');
+                if (mobileToggle) {
+                    mobileToggle.addEventListener('click', function() {
+                        const navMenu = document.getElementById('navMenu');
+                        navMenu.classList.toggle('active');
+                    });
+                }
+
+                // Header scroll effect
+                window.addEventListener('scroll', function() {
+                    const header = document.querySelector('.mainHeader');
+                    if (window.scrollY > 100) {
+                        header.style.background = 'rgba(255, 255, 255, 0.98)';
+                        header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+                    } else {
+                        header.style.background = 'rgba(255, 255, 255, 0.95)';
+                        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                    }
+                });
+
+                // Smooth animations on load
+                window.addEventListener('load', function() {
+                    const elements = document.querySelectorAll('.fade-in-up');
+                    elements.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.style.opacity = '1';
+                        }, index * 200);
+                    });
+                });
+            },
+            
+            toggleChat: function() {
+                const chatContainer = document.getElementById('chatContainer');
+                const chatToggle = document.getElementById('chatToggle');
+                
+                if (!this.isOpen) {
+                    this.openChat();
+                } else {
+                    this.closeChat();
+                }
+            },
+            
+            openChat: function() {
+                const chatContainer = document.getElementById('chatContainer');
+                const chatToggle = document.getElementById('chatToggle');
+                
+                chatContainer.classList.add('active');
                 chatToggle.classList.add('hidden');
-            } else {
-                chatToggle.classList.remove('hidden');
-            }
-        }
-
-        function sendMessage() {
-            const chatInput = document.getElementById('chatInput');
-            const chatBody = document.getElementById('chatBody');
-            const message = chatInput.value.trim();
+                this.isOpen = true;
+                
+                // Focus on input
+                setTimeout(() => {
+                    document.getElementById('chatInput').focus();
+                }, 400);
+            },
             
-            if (message) {
-                // Add user message
-                const userMessage = document.createElement('div');
-                userMessage.className = 'chat-message';
-                userMessage.innerHTML = `<strong>You:</strong> ${message}`;
-                chatBody.appendChild(userMessage);
+            closeChat: function() {
+                const chatContainer = document.getElementById('chatContainer');
+                const chatToggle = document.getElementById('chatToggle');
                 
-                // Simulate bot response
-                setTimeout(() => {
-                    const botMessage = document.createElement('div');
-                    botMessage.className = 'chat-message bot';
-                    botMessage.innerHTML = `<strong>Banking Assistant:</strong> Thank you for your message. Our team will assist you with "${message}". Is there anything else I can help you with?`;
-                    chatBody.appendChild(botMessage);
-                    chatBody.scrollTop = chatBody.scrollHeight;
-                }, 1000);
+                chatContainer.classList.remove('active');
+                chatToggle.classList.remove('hidden');
+                this.isOpen = false;
+            },
+            
+            sendMessage: function() {
+                const chatInput = document.getElementById('chatInput');
+                const chatMessages = document.getElementById('chatMessages');
+                const message = chatInput.value.trim();
                 
-                chatInput.value = '';
-                chatBody.scrollTop = chatBody.scrollHeight;
+                if (message) {
+                    // Add user message
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'chat-widget-message';
+                    userMessage.innerHTML = `<strong>You:</strong> ${message}`;
+                    chatMessages.appendChild(userMessage);
+                    
+                    // Auto-responses based on keywords
+                    const responses = this.generateResponse(message);
+                    
+                    // Simulate bot response
+                    setTimeout(() => {
+                        const botMessage = document.createElement('div');
+                        botMessage.className = 'chat-widget-message bot';
+                        botMessage.innerHTML = `<strong>Banking Assistant:</strong> ${responses}`;
+                        chatMessages.appendChild(botMessage);
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 1000);
+                    
+                    chatInput.value = '';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            },
+            
+            generateResponse: function(message) {
+                const msg = message.toLowerCase();
+                
+                if (msg.includes('account') || msg.includes('balance')) {
+                    return "I can help you with account-related queries. For security reasons, please log into your online banking or visit our nearest branch for account balance information.";
+                } else if (msg.includes('loan') || msg.includes('mortgage')) {
+                    return "We offer various loan options including personal loans, auto loans, and mortgages. Our current rates are very competitive. Would you like me to connect you with a loan specialist?";
+                } else if (msg.includes('card') || msg.includes('credit')) {
+                    return "We have several credit card options with great rewards and low interest rates. You can apply online or speak with one of our representatives for personalized recommendations.";
+                } else if (msg.includes('atm') || msg.includes('branch')) {
+                    return "You can use our ATM finder tool on this page or visit our website to locate the nearest branch or ATM. We have locations throughout the area for your convenience.";
+                } else if (msg.includes('rate') || msg.includes('interest')) {
+                    return "Our current promotional rate is 5.35% APY for 18-month jumbo certificates. We also offer competitive rates on savings accounts and other investment products.";
+                } else if (msg.includes('hello') || msg.includes('hi') || msg.includes('help')) {
+                    return "Hello! I'm here to assist you with all your banking needs. Whether you need help with accounts, loans, credit cards, or general banking services, I'm ready to help!";
+                } else {
+                    return "Thank you for your inquiry. I'm here to help with any banking questions you may have. If you need immediate assistance, please call our customer service line or visit your local branch.";
+                }
+            },
+            
+            handleKeyPress: function(event) {
+                if (event.key === 'Enter') {
+                    this.sendMessage();
+                }
             }
-        }
+        };
 
-        // Enter key for chat
-        document.getElementById('chatInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        // Login form handler
-        function handleLogin(event) {
-            event.preventDefault();
-            alert('Login functionality would be implemented with backend integration. Demo purposes only.');
-        }
-
-        // ATM finder
-        function findATMs() {
-            const location = document.querySelector('.atm-input').value;
-            if (location.trim()) {
-                alert(`Finding ATMs near: ${location}`);
-            } else {
-                alert('Please enter a location');
-            }
-        }
-
-        // Service handlers
-        function showService(service) {
-            alert(`${service} service would be implemented. This is a demo.`);
-        }
-
-        // Smooth animations on load
-        window.addEventListener('load', function() {
-            const elements = document.querySelectorAll('.fade-in-up');
-            elements.forEach((el, index) => {
-                setTimeout(() => {
-                    el.style.opacity = '1';
-                }, index * 200);
-            });
-        });
-    </script> -->
-</body>
-</html>
+        // Additional utility
