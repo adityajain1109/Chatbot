@@ -1,0 +1,832 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>SecureBank Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no" />
+    <link type="text/css" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .mainWrapper {
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Enhanced Header */
+        .mainHeader {
+            height: 80px;
+            padding: 0 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .mainLogo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0090da;
+            cursor: pointer;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-item a:hover {
+            background: linear-gradient(135deg, #0090da, #4facfe);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #7cb342, #8bc34a);
+            color: white !important;
+            padding: 12px 24px !important;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(124, 179, 66, 0.4);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #0090da;
+            cursor: pointer;
+        }
+
+        /* Enhanced Main Body */
+        .mainBody {
+            background: linear-gradient(135deg, rgba(0, 144, 218, 0.9), rgba(75, 172, 254, 0.8)), 
+                        url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .mainBody::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1), transparent 50%);
+        }
+
+        /* Enhanced Content */
+        .mainContent {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            gap: 4rem;
+            align-items: flex-start;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-left {
+            flex: 1;
+            max-width: 55%;
+            padding-right: 2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .rate-highlight {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .rate-text {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #7cb342;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .rate-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .learn-more-btn {
+            background: linear-gradient(135deg, #7cb342, #8bc34a);
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.4);
+        }
+
+        .learn-more-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(124, 179, 66, 0.5);
+        }
+
+        /* Enhanced Banking Cards */
+        .banking-section {
+            flex: 1;
+            max-width: 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding-left: 1rem;
+        }
+
+        .banking-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .banking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .banking-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 15px;
+            padding: 15px 20px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-input:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 144, 218, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #0090da, #4facfe);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 144, 218, 0.4);
+        }
+
+        .form-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .form-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .form-links a:hover {
+            color: white;
+        }
+
+        .atm-finder {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .atm-input {
+            flex: 1;
+        }
+
+        .find-btn {
+            background: #7cb342;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 15px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .find-btn:hover {
+            background: #689f38;
+            transform: translateY(-2px);
+        }
+
+        /* Chat Container */
+        .chatContainer {
+            position: fixed;
+            height: 500px;
+            width: 360px;
+            right: 2rem;
+            bottom: 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transform: translateY(calc(100% + 2rem));
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .chatContainer.active {
+            transform: translateY(0);
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #0090da, #4facfe);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 25px 25px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .chat-close:hover {
+            opacity: 1;
+        }
+
+        .chat-body {
+            padding: 1.5rem;
+            height: calc(100% - 120px);
+            overflow-y: auto;
+        }
+
+        .chat-message {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .chat-input-container {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 1rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+        }
+
+        .chat-send {
+            background: #0090da;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Chat Toggle Button */
+        .chat-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0090da, #4facfe);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 144, 218, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 144, 218, 0.5);
+        }
+
+        /* Services Section */
+        .services-section {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            padding: 2.5rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .services-grid {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .service-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            opacity: 0.85;
+        }
+
+        .service-icon:hover {
+            transform: translateY(-8px);
+            opacity: 1;
+        }
+
+        .service-icon i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-icon:hover i {
+            transform: scale(1.1);
+        }
+
+        .service-icon span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .mainHeader {
+                padding: 0 1rem;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem 1rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .mainContent {
+                flex-direction: column;
+                padding: 1rem;
+                text-align: center;
+            }
+
+            .content-left {
+                max-width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .banking-section {
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .chatContainer {
+                width: calc(100% - 2rem);
+                right: 1rem;
+                left: 1rem;
+            }
+
+            .services-grid {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+
+            .services-section {
+                position: relative;
+                margin-top: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mainHeader {
+                height: 70px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .rate-text {
+                font-size: 2.5rem;
+            }
+
+            .banking-card {
+                padding: 1.5rem;
+            }
+
+            .chat-toggle {
+                width: 60px;
+                height: 60px;
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainWrapper">
+        <!-- Enhanced Header -->
+        <header class="mainHeader">
+            <div class="mainLogo">SecureBank Pro</div>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="#bank">Bank</a></li>
+                    <li class="nav-item"><a href="#borrow">Borrow</a></li>
+                    <li class="nav-item"><a href="#invest">Invest</a></li>
+                    <li class="nav-item"><a href="#protect">Protect</a></li>
+                    <li class="nav-item"><a href="#about">About</a></li>
+                    <li class="nav-item"><a href="#member" class="cta-button">Become a Member</a></li>
+                </ul>
+                <button class="mobile-toggle" id="mobileToggle">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Enhanced Main Body -->
+        <div class="mainBody">
+            <div class="mainContent">
+                <div class="content-left fade-in-up">
+                    <h1 class="hero-title">Sit back, relax and earn a higher rate</h1>
+                    <p class="hero-subtitle">Experience modern banking with premium rates and unmatched security</p>
+                    
+                    <div class="rate-highlight floating">
+                        <div class="rate-text">5.35% APY</div>
+                        <div class="rate-description">Lock in with an 18-month jumbo certificate</div>
+                    </div>
+                    
+                    <button class="learn-more-btn" onclick="toggleChat()">
+                        <i class="fa fa-arrow-right"></i> Learn More
+                    </button>
+                </div>
+
+                <div class="banking-section fade-in-up">
+                    <!-- Online Banking Card -->
+                    <div class="banking-card">
+                        <h3>Online Banking</h3>
+                        <form class="login-form" onsubmit="handleLogin(event)">
+                            <input type="text" class="form-input" placeholder="Username" required>
+                            <input type="password" class="form-input" placeholder="Password" required>
+                            <button type="submit" class="login-btn">Secure Log In</button>
+                        </form>
+                        <div class="form-links">
+                            <a href="#setup">Set up in 1 Minute</a>
+                            <a href="#security">Security Center</a>
+                        </div>
+                    </div>
+
+                    <!-- ATM Finder Card -->
+                    <div class="banking-card">
+                        <h3>Find ATMs</h3>
+                        <div class="atm-finder">
+                            <input type="text" class="form-input atm-input" placeholder="City, State or Zip">
+                            <button class="find-btn" onclick="findATMs()">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Section -->
+            <div class="services-section">
+                <div class="services-grid">
+                    <div class="service-icon" onclick="showService('mobile')">
+                        <i class="fa fa-mobile"></i>
+                        <span>Mobile Banking</span>
+                    </div>
+                    <div class="service-icon" onclick="showService('card')">
+                        <i class="fa fa-credit-card"></i>
+                        <span>Credit Cards</span>
+                    </div>
+                    <div class="service-icon" onclick="showService('statement')">
+                        <i class="fa fa-file-text-o"></i>
+                        <span>Statements</span>
+                    </div>
+                    <div class="service-icon" onclick="showService('calculator')">
+                        <i class="fa fa-calculator"></i>
+                        <span>Calculators</span>
+                    </div>
+                    <div class="service-icon" onclick="showService('car')">
+                        <i class="fa fa-car"></i>
+                        <span>Auto Loans</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Container -->
+        <div class="chatContainer" id="chatContainer">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fa fa-comments"></i> Banking Assistant
+                </div>
+                <button class="chat-close" onclick="toggleChat()">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="chat-message">
+                    <strong>Banking Assistant:</strong> Hello! How can I help you with your banking needs today?
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type your message...">
+                <button class="chat-send" onclick="sendMessage()">
+                    <i class="fa fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Toggle Button -->
+        <button class="chat-toggle" id="chatToggle" onclick="toggleChat()">
+            <i class="fa fa-comments"></i>
+        </button>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileToggle').addEventListener('click', function() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.mainHeader');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Chat functionality
+        function toggleChat() {
+            const chatContainer = document.getElementById('chatContainer');
+            const chatToggle = document.getElementById('chatToggle');
+            
+            chatContainer.classList.toggle('active');
+            
+            if (chatContainer.classList.contains('active')) {
+                chatToggle.style.transform = 'scale(0)';
+                setTimeout(() => {
+                    chatToggle.style.display = 'none';
+                }, 300);
+            } else {
+                chatToggle.style.display = 'block';
+                setTimeout(() => {
+                    chatToggle.style.transform = 'scale(1)';
+                }, 50);
+            }
+        }
+
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const chatBody = document.getElementById('chatBody');
+            const message = chatInput.value.trim();
+            
+            if (message) {
+                // Add user message
+                const userMessage = document.createElement('div');
+                userMessage.className = 'chat-message';
+                userMessage.innerHTML = `<strong>You:</strong> ${message}`;
+                chatBody.appendChild(userMessage);
+                
+                // Simulate bot response
+                setTimeout(() => {
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'chat-message';
+                    botMessage.innerHTML = `<strong>Banking Assistant:</strong> Thank you for your message. Our team will assist you with "${message}". Is there anything else I can help you with?`;
+                    chatBody.appendChild(botMessage);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 1000);
+                
+                chatInput.value = '';
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+        }
+
+        // Enter key for chat
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Login form handler
+        function handleLogin(event) {
+            event.preventDefault();
+            alert('Login functionality would be implemented with backend integration. Demo purposes only.');
+        }
+
+        // ATM finder
+        function findATMs() {
+            const location = document.querySelector('.atm-input').value;
+            if (location.trim()) {
+                alert(`Finding ATMs near: ${location}`);
+            } else {
+                alert('Please enter a location');
+            }
+        }
+
+        // Service handlers
+        function showService(service) {
+            alert(`${service} service would be implemented. This is a demo.`);
+        }
+
+        // Smooth animations on load
+        window.addEventListener('load', function() {
+            const elements = document.querySelectorAll('.fade-in-up');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                }, index * 200);
+            });
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.mainBody');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+    </script>
+</body>
+</html>
