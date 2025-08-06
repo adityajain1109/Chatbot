@@ -1,20 +1,20 @@
 {
-  "name": "My BotNext Chatbot",
+  "name": "BotNext Chatbot",
   "short_name": "BotNext",
-  "description": "Chatbot page as PWA",
+  "description": "Chatbot powered by PWA",
+  "start_url": "/Chatbot/BotNext2.html",
   "scope": "/Chatbot/",
-  "start_url": "/Chatbot/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#3367D6",
   "icons": [
     {
-      "src": "/<repo-name>/icons/icon-192.png",
+      "src": "/Chatbot/icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/<repo-name>/icons/icon-512.png",
+      "src": "/Chatbot/icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
