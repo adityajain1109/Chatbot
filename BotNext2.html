@@ -717,11 +717,7 @@
         </section>
     </main>
 
-    <!-- Fixed Buttons (Edit + Chatbot) -->
-    <div class="fixed-buttons">
-        <button class="edit-button" onclick="handleEdit()" title="Edit Page">
-            ✏️
-        </button>
+    
         
         <div class="chatbot-container">
             <button class="chatbot-toggle" id="chatToggle" onclick="toggleChat()" title="Open Chat">
@@ -730,51 +726,7 @@
         </div>
     </div>
 
-    <script>
-        // Edit button functionality
-        function handleEdit() {
-            alert('Edit functionality activated!\n\nThis could open:\n• Content management interface\n• Page editor\n• Admin dashboard\n• Settings panel');
-            
-            // You can replace this alert with actual edit functionality like:
-            // window.location.href = '/edit';
-            // openEditModal();
-            // toggleEditMode();
-        }
-
-        // Chat toggle functionality
-        function toggleChat() {
-            alert('Chat functionality would open here!\n\nThis could:\n• Open chatbot interface\n• Connect to customer service\n• Launch help system');
-            
-            // You can replace this with actual chat functionality
-        }
-
-        // Add some interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add ripple effect to buttons
-            const buttons = document.querySelectorAll('.edit-button, .chatbot-toggle');
-            
-            buttons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    const ripple = document.createElement('span');
-                    const rect = button.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
-                    
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = x + 'px';
-                    ripple.style.top = y + 'px';
-                    ripple.classList.add('ripple');
-                    
-                    button.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 300);
-                });
-            });
-        });
-    </script>
+    
 
     <style>
         /* Ripple effect for buttons */
